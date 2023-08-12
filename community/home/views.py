@@ -14,15 +14,14 @@ def home(request):
     return render(request,"index.html")
 
 def register(request):
-    global email,username
+    global uemail,username
     if request.method == "POST":
         username = request.POST['username']
-        email = request.POST['email']
+        uemail = request.POST['email']
         password = request.POST['password']
         cpassword = request.POST['cpassword']
-
         if(password==cpassword):
-            User.objects.create_user(username=username,email=email,password=password)
+            User.objects.create_user(username=username,email=uemail,password=password)
             return redirect('verify')
         else:
             return HttpResponse("Password doesn't match")
@@ -45,7 +44,8 @@ def verify(request):
             d.delete()
             return HttpResponse("failed")
     otp = random.randrange(1000,9999)
-    mail_verify(username,email,otp)
+    print(username,uemail,otp)
+    mail_verify(username,uemail,otp)
     print(otp)
     return render(request,"verify.html")
 

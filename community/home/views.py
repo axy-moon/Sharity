@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
 from .models import *
+from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -10,8 +11,11 @@ import random
 
 # Create your views here.
 
-def home(request):
+def index(request):
     return render(request,"index.html")
+
+def home(request):
+    return render(request,"home.html")
 
 def register(request):
     global uemail,username
@@ -30,6 +34,14 @@ def register(request):
         return render(request,"register.html")
 
 def login(request):
+    if(request.method == "POST"):
+        username = request.POST['username']
+        password = request.POST['password']
+        u = authenticate(username=username, password=password)
+        if u is not None:
+            return redirect('home')
+        else:
+            return HttpResponse("Invalid User")
     return render(request,"login.html")
 
 def verify(request):

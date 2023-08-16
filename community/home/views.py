@@ -70,3 +70,6 @@ def mail_verify(username,email,otp):
     send_mail( subject, message, email_from, recipient_list )
     return True
 
+def events(request):
+    return render(request,"events.html")
+

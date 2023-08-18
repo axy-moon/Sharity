@@ -4,3 +4,8 @@ body {
     background-color: #D8D9DA;
 
 }
+
+/* Only the scroll bar */
+::-webkit-scrollbar {
+display: none;
+}

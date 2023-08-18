@@ -8,7 +8,11 @@ urlpatterns = [
     path('register/',views.register,name="register"),
     path('login/',views.login,name="login"),
     path('verify/',views.verify,name="verify"),
-    path('events/',views.events,name="events")
+    path('events/',views.events,name="events"),
+    path('profile/',views.profile,name="profile"),
+    path('create_event/',views.create_event,name="create_event")
+
+
 
 
 

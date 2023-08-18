@@ -73,3 +73,11 @@ def mail_verify(username,email,otp):
 def events(request):
     return render(request,"events.html")
 
+def profile(request):
+    return render(request,"profile.html")
+
+
+####EVENT MODULE ##########
+
+def create_event(request):
+    return render(request,'new_event.html')

@@ -15,7 +15,9 @@ def index(request):
     return render(request,"index.html")
 
 def home(request):
-    return render(request,"home.html")
+    events = Event.objects.all()
+    home_dict = {'event' : events}
+    return render(request,"home.html",home_dict)
 
 def register(request):
     global uemail,username
@@ -80,4 +82,13 @@ def profile(request):
 ####EVENT MODULE ##########
 
 def create_event(request):
+    if request.method == 'POST':
+        title = request.POST['event-title']
+        subtitle = request.POST['event-subtitle']
+        date = request.POST['event-date']
+        location = request.POST['event-location']
+        desc = request.POST['event-description']
+        current_user = request.user
+        f = Event.objects.create(event_title=title,event_subtitle=subtitle,location=location,date=date,description=desc,organizer=current_user)
+        return redirect('home')
     return render(request,'new_event.html')

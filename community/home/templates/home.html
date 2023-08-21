@@ -17,14 +17,13 @@
    {% include 'navbar.html' %}
   
    {% block page %}
-
     <section class="flex justify-between align-center mx-auto mt-3 ">
       <div class="flex mt-3 justify-around align-center">
         <!---Side Navigation-->
         <div class="block mx-5 w-full h-fit max-w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
             <ul class="w-full">
              <a href=""> <li
-                class="w-full border-b-2 border-neutral-100 border-opacity-100 px-4 py-3 dark:border-opacity-50">
+                class="text-primary-600 w-full border-b-2 border-neutral-100 border-opacity-100 px-4 py-3 dark:border-opacity-50">
                  Explore
               </li></a>
              <a href=""> <li
@@ -75,10 +74,12 @@
            type="button"
            href="#"
            class="pointer-events-auto inline-block cursor-pointer rounded text-base font-normal leading-normal text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 mx-2">
-           Share
+           View Details
          </a>
        </div>
      </div>
+
+     {% for i in event %}
 
      <div
      class=" my-3 block min-w-[45rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
@@ -86,20 +87,20 @@
      <div class="p-6">
        <h5
          class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-         Coastal clean-up
+         {{i.event_title}}
        </h5>
        <p class="text-base text-neutral-600 dark:text-neutral-200">
-         A Community event to clean the rural coastal areas  to help restore our environment.
+         {{i.event_subtitle}}
        </p>
      </div>
      <ul class="w-full">
        <li
          class="w-full border-b-2 border-neutral-100 border-opacity-100 px-6 py-3 dark:border-opacity-50">
-         <i class="fa-solid fa-location-dot pr-3"></i>Kanyakumari
+         <i class="fa-solid fa-location-dot pr-3"></i>{{i.location}}
        </li>
        <li
          class="w-full border-neutral-100 border-opacity-100 px-6 py-3 dark:border-opacity-50">
-         <i class="fa-regular fa-calendar pr-3"></i>26-12-2023
+         <i class="fa-regular fa-calendar pr-3"></i>{{i.date}}
        </li>
      </ul>
      <div class="p-6">
@@ -112,10 +113,11 @@
          type="button"
          href="#"
          class="pointer-events-auto inline-block cursor-pointer rounded text-base font-normal leading-normal text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 mx-2">
-         Share
+         View Details
        </a>
      </div>
    </div>
+   {% endfor %}
      </div>
      
      <!----Right Side Bar---->

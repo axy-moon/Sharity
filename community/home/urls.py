@@ -11,7 +11,7 @@ urlpatterns = [
     path('events/',views.events,name="events"),
     path('profile/',views.profile,name="profile"),
     path('create_event/',views.create_event,name="create_event")
-
+    
 
 
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
 from .models import *
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,logout
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -77,6 +77,10 @@ def events(request):
 
 def profile(request):
     return render(request,"profile.html")
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 
 
 ####EVENT MODULE ##########

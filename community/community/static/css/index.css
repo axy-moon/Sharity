@@ -1,100 +1,154 @@
-*{
-	margin: 0;
-	padding: 0;
-	font-family: Century Gothic;
-}
-header{
-	background-image:linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.5)), url(../img/bg.jpg);
-	height: 100vh;
-	background-size: cover;
-	background-position: center;
-	min-height: 100px;
-}
-ul{
-	float:right;
-	list-style-type: none;
-	margin-top: 30px;
-	margin-right:60px ;
-}
-ul li{
-	display: inline-block;
-}
-ul li a{
-	text-decoration: none;
-	color: #fff;
-	padding: 5px 20px;
-	border: 1px solid transparent;
-	transition: 0.5s ease;
-
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Century Gothic;
 }
 
-ul li a:hover{
-	background-color: #fff;
-	color: #000;
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url(../img/bg.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    min-height: 100px;
 }
 
-ul li.active a{
-background-color:#fff;
-	color: #000;
+ul {
+    float: right;
+    list-style-type: none;
+    margin-top: 30px;
+    margin-right: 60px;
+}
 
+ul li {
+    display: inline-block;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    transition: 0.5s ease;
+}
+
+ul li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+ul li.active a {
+    background-color: #fff;
+    color: #000;
 }
 
 .logo {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
-.logo img{
-	height: auto;
-	width: 300px;
+.logo img {
+    height: auto;
+    width: 300px;
 }
 
-.main{
-	max-width: 1200px;
-	margin: auto;
+.main {
+    max-width: 1200px;
+    margin: auto;
 }
 
-.title{
-	position: absolute;
-	top: 45%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	text-align: center;
-}
-
-.title h1{
-	color: #fff;
-	font-size: 85px;
-}
-.title h5{
-	color: #fff;
-	font-size: 30px;
+.title {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
-.button{
-	position: absolute;
-	top: 65%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+.title h1 {
+    color: #fff;
+    font-size: 85px;
 }
 
-.btn{
-	border: 1px solid #fff;
-	padding: 5px 20px;
-	color: #fff;
-	transition: 0.6s ease;
-	font-size: 18px;
-	text-decoration: none;
+.title h5 {
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
 }
 
-.btn:hover{
-	background-color: #fff;
-	color: #000;
+.button {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
+.btn {
+    border: 1px solid #fff;
+    padding: 5px 20px;
+    color: #fff;
+    transition: 0.6s ease;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+}
 
 .hero-para {
     text-align: center;
     color: #fff;
+}
+
+.form-control input {
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+
+.form-control input:focus {
+    outline: 0;
+    border-color: #777;
+}
+
+.form-control.success input {
+    border-color: #2ecc71;
+}
+
+.form-control.error input {
+    border-color: #e74c3c;
+}
+
+.form-control i {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+    color: #e74c3c;
+    visibility: visible;
+}
+
+.form-control.small {
+    color: #e74c3c;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.form-control.error small {
+    visibility: visible;
 }

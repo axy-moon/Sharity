@@ -13,6 +13,7 @@ urlpatterns = [
     path('events/',views.events,name="events"),
     path('profile/',views.profile,name="profile"),
     path('create_event/',views.create_event,name="create_event"),
+    path('feeds/',views.feeds,name="feeds"),
     path('qr/<int:key_id>',views.qr_gen,name="qr")
 
     

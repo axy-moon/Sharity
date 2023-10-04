@@ -92,6 +92,9 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+def feeds(request):
+    return render(request,"feeds.html")
+
 
 ####EVENT MODULE ##########
 

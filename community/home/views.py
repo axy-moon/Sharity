@@ -85,6 +85,9 @@ def events(request):
 def profile(request):
     return render(request,"profile.html")
 
+def category(request):
+    return render(request,"category.html")
+
 def logout_view(request):
     logout(request)
     return redirect('/')

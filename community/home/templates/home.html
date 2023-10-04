@@ -22,11 +22,11 @@
         <!---Side Navigation-->
         <div class="block mx-5 w-full h-fit max-w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
             <ul class="w-full">
-             <a href=""> <li
+             <a href="{% url 'home' %}"> <li
                 class="text-primary-600 w-full border-b-2 border-neutral-100 border-opacity-100 px-4 py-3 dark:border-opacity-50">
                  Explore
               </li></a>
-             <a href=""> <li
+             <a href="{% url 'category' %}"> <li
                 class="w-full border-b-2 border-neutral-100 border-opacity-100 px-4 py-3 dark:border-opacity-50">
                 Categories
               </li></a>
@@ -103,7 +103,7 @@
          <i class="fa-regular fa-calendar pr-3"></i>{{i.date| date:'F'}} {{i.date| date:'d'}}
        </li>
      </ul>
-     <div class="p-6">
+     <div class="p-6 flex">
       <form method="POST" action="{% url 'qr' i.id %}">
         {% csrf_token %}
       <button
@@ -116,7 +116,7 @@
        <a
          type="button"
          href="#"
-         class="pointer-events-auto inline-block cursor-pointer rounded text-base font-normal leading-normal text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 mx-2">
+         class="pointer-events-auto inline-block cursor-pointer rounded text-base font-normal leading-normal text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 mx-2 my-1">
          View Details
        </a>
      </div>

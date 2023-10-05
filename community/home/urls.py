@@ -14,6 +14,7 @@ urlpatterns = [
     path('profile/',views.profile,name="profile"),
     path('create_event/',views.create_event,name="create_event"),
     path('feeds/',views.feeds,name="feeds"),
+    path('nearby_events/',views.nearby,name="nearby"),
     path('qr/<int:key_id>',views.qr_gen,name="qr")
 
     

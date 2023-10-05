@@ -103,10 +103,11 @@ def create_event(request):
         title = request.POST['event-title']
         subtitle = request.POST['event-subtitle']
         date = request.POST['event-date']
+        time = request.POST['time']
         location = request.POST['event-location']
         desc = request.POST['event-description']
         current_user = request.user
-        f = Event.objects.create(event_title=title,event_subtitle=subtitle,location=location,date=date,description=desc,organizer=current_user)
+        f = Event.objects.create(event_title=title,event_subtitle=subtitle,location=location,date=date,description=desc,organizer=current_user,time=time)
         return redirect('home')
     return render(request,'new_event.html')
 
@@ -130,3 +131,7 @@ def        qr_gen(request,key_id):
         return HttpResponse('Event Registered Successfully')
         
     return redirect('home')
+
+
+def nearby(request):
+    return render(request,"nearby.html")

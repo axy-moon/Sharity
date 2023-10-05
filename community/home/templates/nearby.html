@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+
+
+{% block page %}
+
+<div class="block mt-5 mx-5 ml-[9rem] w-full h-fit max-w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+    <ul class="w-full">
+     <a href="{% url 'home' %}"> <li
+        class="w-full border-b-2 border-neutral-100 border-opacity-100 px-4 py-3 dark:border-opacity-50">
+         Explore
+      </li></a>
+     <a href="{% url 'category' %}"> <li
+        class="w-full border-b-2 border-neutral-100 border-opacity-100 px-4 py-3 dark:border-opacity-50">
+        Categories
+      </li></a>
+      <a href=""><li
+        class="text-primary-600 w-full border-b-2 border-neutral-100 border-opacity-100 px-4 py-3 dark:border-opacity-50">
+        Nearby Events
+      </li></a>
+    </ul>
+   <a href=""> <div class="border-neutral-100 p-4 dark:border-neutral-600 dark:text-neutral-50">
+      My Events
+    </div></a>
+</div>  
+<div class="">
+<div class="bg-white p-5 rounded-lg mt-5">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125322.44173068422!2d76.88483266057695!3d11.014126297231963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859af2f971cb5%3A0x2fc1c81e183ed282!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1696485502518!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+
+{% endblock %}

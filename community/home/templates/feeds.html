@@ -1,5 +1,6 @@
 {% extends 'home.html' %}
 
+{% load static %}
 
 {% block page %}
 <!-- component -->
@@ -292,7 +293,7 @@
 					</div>
 					<!-- Image -->
 					<div class="mb-4">
-						<img src="https://placekitten.com/300/300" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+						<img src="{% static 'img/bg.jpg' %}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
 					</div>
 					<!-- Like and Comment Section -->
 					<div class="flex items-center justify-between text-gray-500">

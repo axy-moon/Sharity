@@ -1,143 +1,242 @@
+<!-- component -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharity</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{% static 'js/tailwind.config.js' %}"></script>
-    <script src="https://kit.fontawesome.com/4fc0c0ec0f.js" crossorigin="anonymous"></script>
-
+    
 </head>
 <body>
-  <style>
-    .round {
-      border-radius: 50%;
-    }
-  </style>
+<div class="flex flex-col h-screen bg-gray-100">
+
+    <!-- Barra de navegación superior -->
     {% include 'navbar.html' %}
-    
-    <section class="overflow-hidden">
-         
-    <div class="bg-white shadow-lg border-t-4 border-indigo-500 absolute bottom-0 w-full md:w-0 md:hidden flex flex-row flex-wrap">
-      <div class="w-full text-right"><button class="p-2 fa fa-bars text-4xl text-gray-600"></button></div>
-    </div>
-    
-    <div class="w-0 md:w-1/4 lg:w-1/5 h-0 md:h-screen overflow-y-hidden bg-white shadow-lg">
-      <div class="p-5 bg-white sticky top-0">
-        <img class="border border-indigo-100 w-3/4 mx-auto shadow-lg round" src="http://lilithaengineering.co.za/wp-content/uploads/2017/08/person-placeholder.jpg">
-        <div class="pt-2 border-t mt-5 w-full text-center text-xl text-gray-600">
-         <p id="username" class="capitalize">{{request.user}}</p> 
+
+    <!-- Contenido principal -->
+    <div class="flex-1 flex flex-wrap">
+        <!-- Barra lateral de navegación (oculta en dispositivos pequeños) -->
+        <div class="p-2 bg-white w-full md:w-60 flex flex-col md:flex hidden" id="sideNav">
+            <nav>
+                <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+                <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <i class="fas fa-file-alt mr-2"></i>Event Data
+                </a>
+                <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <i class="fas fa-users mr-2"></i>Friends
+                </a>
+                <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <i class="fas fa-calendar mr-2"></i>Calendar
+                </a>
+                <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white" href="#">
+                    <i class="fas fa-exchange-alt mr-2"></i>Transactions
+                </a>
+            </nav>
+
+            <!-- Ítem de Cerrar Sesión -->
+            <a class="block text-gray-500 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-cyan-500 hover:text-white mt-auto" href="#">
+                <i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión
+            </a>
+
+            <!-- Señalador de ubicación -->
+            <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mt-2"></div>
+
+            <!-- Copyright al final de la navegación lateral -->
+            <p class="mb-1 px-5 py-3 text-left text-xs text-cyan-500">Copyright Sharity@2023</p>
+
         </div>
-      </div>
-      <div class="w-full h-screen antialiased flex flex-col hover:cursor-pointer">
-        <a class="hover:bg-gray-300 bg-gray-200 border-t-2 p-3 w-full text-lg text-left text-gray-600 font-semibold" href=""><i class="fa fa-comment text-gray-600 text-2xl pr-1 pt-1 float-right"></i>Notifications</a>
-        <a class="hover:bg-gray-300 bg-gray-200 border-t-2 p-3 w-full text-lg text-left text-gray-600 font-semibold" href=""><i class="fa fa-cog text-gray-600 text-2xl pr-1 pt-1 float-right"></i>Settings</a>
-        <a class="hover:bg-gray-300 bg-gray-200 border-t-2 p-3 w-full text-lg text-left text-gray-600 font-semibold" href=""><i class="fa fa-arrow-left text-gray-600 text-2xl pr-1 pt-1 float-right"></i>Log out</a>
-      </div>
-    </div>    
-    </section>
-    <section>
-      <!-- component -->
-<div class="fixed bottom-0 right-0 mb-4 mr-4">
-  <button id="open-chat" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-      </svg>
-      Chat with Admin Bot
-  </button>
+
+        <!-- Área de contenido principal -->
+        <div class="flex-1 p-4 w-full md:w-1/2">
+            <!-- Campo de búsqueda -->
+            <div class="relative max-w-md w-full">
+                <div class="absolute top-1 left-2 inline-flex items-center p-2">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input class="w-full h-10 pl-10 pr-4 py-1 text-base placeholder-gray-500 border rounded-full focus:shadow-outline" type="search" placeholder="Search">
+            </div>
+
+                 <!-- Contenedor de Gráficas -->
+            <div class="mt-8 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
+                <!-- Primer contenedor -->
+                <!-- Sección 1 - Gráfica de Usuarios -->
+                <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
+                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Events</h2>
+                    <div class="my-1"></div> <!-- Espacio de separación -->
+                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
+                    <div class="chart-container" style="position: relative; height:150px; width:100%">
+                        <!-- El canvas para la gráfica -->
+                        <canvas id="usersChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Segundo contenedor -->
+                <!-- Sección 2 - Gráfica de Comercios -->
+                <div class="flex-1 bg-white p-4 shadow rounded-lg md:w-1/2">
+                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Total Community Hours</h2>
+                    <div class="my-1"></div> <!-- Espacio de separación -->
+                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
+                    <div class="chart-container" style="position: relative; height:150px; width:100%">
+                        <!-- El canvas para la gráfica -->
+                        <canvas id="commercesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tercer contenedor debajo de los dos anteriores -->
+            <!-- Sección 3 - Tabla de Autorizaciones Pendientes -->
+            <div class="mt-8 bg-white p-4 shadow rounded-lg">
+                <h2 class="text-gray-500 text-lg font-semibold pb-4">Autorizaciones Pendientes</h2>
+                <div class="my-1"></div> <!-- Espacio de separación -->
+                <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
+                <table class="w-full table-auto text-sm">
+                    <thead>
+                        <tr class="text-sm leading-normal">
+                            <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Name</th>
+                            <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Date</th>
+                            <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40" alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
+                            <td class="py-2 px-4 border-b border-grey-light">Juan Pérez</td>
+                            <td class="py-2 px-4 border-b border-grey-light">Comercio</td>
+                        </tr>
+                        <!-- Añade más filas aquí como la anterior para cada autorización pendiente -->
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40" alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
+                            <td class="py-2 px-4 border-b border-grey-light">María Gómez</td>
+                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
+                        </tr>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40" alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
+                            <td class="py-2 px-4 border-b border-grey-light">Carlos López</td>
+                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40" alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
+                            <td class="py-2 px-4 border-b border-grey-light">Laura Torres</td>
+                            <td class="py-2 px-4 border-b border-grey-light">Comercio</td>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40" alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
+                            <td class="py-2 px-4 border-b border-grey-light">Ana Ramírez</td>
+                            <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Botón "Ver más" para la tabla de Autorizaciones Pendientes -->
+                <div class="text-right mt-4">
+                    <button class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
+                        Ver más
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cuarto contenedor -->
+            <!-- Sección 4 - Tabla de Transacciones -->
+            <div class="mt-8 bg-white p-4 shadow rounded-lg">
+                <div class="bg-white p-4 rounded-md mt-4">
+                    <h2 class="text-gray-500 text-lg font-semibold pb-4">Transacciones</h2>
+                    <div class="my-1"></div> <!-- Espacio de separación -->
+                    <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
+                    <table class="w-full table-auto text-sm">
+                        <thead>
+                            <tr class="text-sm leading-normal">
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Nombre</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Fecha</th>
+                                <th class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light text-right">Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-grey-lighter">
+                                <td class="py-2 px-4 border-b border-grey-light">Carlos Sánchez</td>
+                                <td class="py-2 px-4 border-b border-grey-light">27/07/2023</td>
+                                <td class="py-2 px-4 border-b border-grey-light text-right">$1500</td>
+                            </tr>
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light">Pedro Hernández</td>
+                            <td class="py-2 px-4 border-b border-grey-light">02/08/2023</td>
+                            <td class="py-2 px-4 border-b border-grey-light text-right">$1950</td>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light">Sara Ramírez</td>
+                            <td class="py-2 px-4 border-b border-grey-light">03/08/2023</td>
+                            <td class="py-2 px-4 border-b border-grey-light text-right">$1850</td>
+                        </tr>
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light">Daniel Torres</td>
+                            <td class="py-2 px-4 border-b border-grey-light">04/08/2023</td>
+                            <td class="py-2 px-4 border-b border-grey-light text-right">$2300</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- Botón "Ver más" para la tabla de Transacciones -->
+                    <div class="text-right mt-4">
+                        <button class
+                                                <div class="text-right mt-4">
+                            <button class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
+                                Ver más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div id="chat-container" class="hidden fixed bottom-16 right-4 w-96">
-  <div class="bg-white shadow-md rounded-lg max-w-lg w-full">
-      <div class="p-4 border-b bg-blue-500 text-white rounded-t-lg flex justify-between items-center">
-          <p class="text-lg font-semibold">Admin Bot</p>
-          <button id="close-chat" class="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-          </button>
-      </div>
-      <div id="chatbox" class="p-4 h-80 overflow-y-auto">
-        <!-- Chat messages will be displayed here -->
-       
-      </div>
-      <div class="p-4 border-t flex">
-          <input id="user-input" type="text" placeholder="Type a message" class="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <button id="send-button" class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300">Send</button>
-      </div>
-  </div>
-</div>
+
+<!-- Script para las gráficas -->
 <script>
-  const chatbox = document.getElementById("chatbox");
-const chatContainer = document.getElementById("chat-container");
-const userInput = document.getElementById("user-input");
-const sendButton = document.getElementById("send-button");
-const openChatButton = document.getElementById("open-chat");
-const closeChatButton = document.getElementById("close-chat");
-const username = document.getElementById("username").innerText;
+    // Gráfica de Usuarios
+    var usersChart = new Chart(document.getElementById('usersChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Nuevos', 'Registrados'],
+            datasets: [{
+                data: [30, 65],
+                backgroundColor: ['#00F0FF', '#8B8B8D'],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom' // Ubicar la leyenda debajo del círculo
+            }
+        }
+    });
 
+    // Gráfica de Comercios
+    var commercesChart = new Chart(document.getElementById('commercesChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Nuevos', 'Registrados'],
+            datasets: [{
+                data: [60, 40],
+                backgroundColor: ['#FEC500', '#8B8B8D'],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom' // Ubicar la leyenda debajo del círculo
+            }
+        }
+    });
 
-let isChatboxOpen = true; // Set the initial state to open
+    // Agregar lógica para mostrar/ocultar la navegación lateral al hacer clic en el ícono de menú
+    const menuBtn = document.getElementById('menuBtn');
+    const sideNav = document.getElementById('sideNav');
 
-// Function to toggle the chatbox visibility
-function toggleChatbox() {
-chatContainer.classList.toggle("hidden");
-isChatboxOpen = !isChatboxOpen; // Toggle the state
-}
-
-// Add an event listener to the open chat button
-openChatButton.addEventListener("click", toggleChatbox);
-
-// Add an event listener to the close chat button
-closeChatButton.addEventListener("click", toggleChatbox);
-
-// Add an event listener to the send button
-sendButton.addEventListener("click", function () {
-const userMessage = userInput.value;
-if (userMessage.trim() !== "") {
-  addUserMessage(userMessage);
-  respondToUser(userMessage);
-  userInput.value = "";
-}
-});
-
-userInput.addEventListener("keyup", function (event) {
-if (event.key === "Enter") {
-  const userMessage = userInput.value;
-  addUserMessage(userMessage);
-  respondToUser(userMessage);
-  userInput.value = "";
-}
-});
-
-function addUserMessage(message) {
-const messageElement = document.createElement("div");
-messageElement.classList.add("mb-2", "text-right");
-messageElement.innerHTML = `<p class="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">${message}</p>`;
-chatbox.appendChild(messageElement);
-chatbox.scrollTop = chatbox.scrollHeight;
-}
-
-function addBotMessage(message) {
-const messageElement = document.createElement("div");
-messageElement.classList.add("mb-2");
-messageElement.innerHTML = `<p class="bg-gray-200 text-gray-700 rounded-lg py-2 px-4 inline-block">${message}</p>`;
-chatbox.appendChild(messageElement);
-chatbox.scrollTop = chatbox.scrollHeight;
-}
-
-function respondToUser(userMessage) {
-// Replace this with your chatbot logic
-setTimeout(() => {
-  addBotMessage(`Hi ${username}. Welcome to Sharity`);
-}, 500);
-}
-
-// Automatically open the chatbox on page load
-
-  </script>
-    </section>
-  </body>
+    menuBtn.addEventListener('click', () => {
+        sideNav.classList.toggle('hidden'); // Agrega o quita la clase 'hidden' para mostrar u ocultar la navegación lateral
+    });
+</script>
+</body>
 </html>

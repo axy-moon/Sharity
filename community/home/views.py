@@ -83,6 +83,17 @@ def mail_verify(username,email,otp):
     return True
 
 def events(request):
+    if request.method=='POST':
+        searching = False
+        keyword=request.POST.get('search')
+        search_events=Event.objects.filter(event_title__icontains=keyword)
+        context={
+            'result':search_events,
+            'boolean':searching 
+        }
+        print(context)
+        searching = True
+        return render(request,'events.html',context)
     event = Event.objects.all()
     e = {"events":event}
     return render(request,"events.html",e)
@@ -140,4 +151,14 @@ def        qr_gen(request,key_id):
 
 def nearby(request):
     return render(request,"nearby.html")
+
+def serach(request):
+    if request.method=='POST':
+        keyword=request.POST.get('search')
+        search_events=Event.filter(event_title=keyword)
+    context={
+        'result':search_events
+
+    }
+    return render(request,'events.html',context)
 

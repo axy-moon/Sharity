@@ -17,6 +17,10 @@ from qrcode import *
 def index(request):
     return render(request,"index.html")
 
+
+def details(request):
+    return render(request,"userdetails.html")
+
 @login_required
 def home(request):
     events = Event.objects.order_by('date')
@@ -67,6 +71,7 @@ def verify(request):
     mail_verify(username,uemail,otp)
     print(otp)
     return render(request,"verify.html")
+
 
 
 def mail_verify(username,email,otp):
@@ -135,3 +140,4 @@ def        qr_gen(request,key_id):
 
 def nearby(request):
     return render(request,"nearby.html")
+

@@ -19,6 +19,22 @@ def index(request):
 
 
 def details(request):
+    if request.method == "POST":
+        fname = request.POST['fName']
+        lname = request.POST['lName']
+        age = request.POST['age']
+        gender = request.POST['gender']
+        city = request.POST['city']
+        role = request.POST['radio1']
+
+        user = User.objects.get(username=request.user)
+        user.first_name = fname
+        user.last_name = lname
+        user.save()
+        Profile.objects.create(name=user,age=age,gender=gender,location=city,role=role)
+        print(fname,lname,age,gender,city,role)
+        return redirect("home")
+        
     return render(request,"userdetails.html")
 
 @login_required
@@ -48,9 +64,14 @@ def login_view(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
+        
         if user is not None:
-            login(request,user)
-            return redirect('home')
+           if user.last_login:
+                auth.login(request,user)
+                return redirect('home')
+           else:
+                auth.login(request,user)
+                return redirect('details')
         else:
             return HttpResponse("Invalid User")
     return render(request,"login.html")
@@ -127,7 +148,7 @@ def create_event(request):
         return redirect('home')
     return render(request,'new_event.html')
 
-def        qr_gen(request,key_id):
+def qr_gen(request,key_id):
     if request.method == 'POST':
         current_user = request.user
         u = User.objects.get(username=current_user)

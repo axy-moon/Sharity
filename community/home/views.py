@@ -104,16 +104,19 @@ def mail_verify(username,email,otp):
     return True
 
 def events(request):
+    searching = False
     if request.method=='POST':
-        searching = False
         keyword=request.POST.get('search')
         search_events=Event.objects.filter(event_title__icontains=keyword)
+        searching = True
+
         context={
             'result':search_events,
-            'boolean':searching 
+            'boolean':searching,
+            'keyword':keyword 
         }
+
         print(context)
-        searching = True
         return render(request,'events.html',context)
     event = Event.objects.all()
     e = {"events":event}
@@ -130,7 +133,14 @@ def logout_view(request):
     return redirect('/')
 
 def feeds(request):
-    return render(request,"feeds.html")
+    if request.method == "POST":
+        content = request.POST['postContent']
+        post_image = request.POST['fileAttachment']
+
+        Post.objects.create(author=request.user,content=content,img=post_image)
+        return redirect('home')
+    all_posts = Post.objects.all()
+    return render(request,"feeds.html",{ "posts": all_posts })
 
 
 ####EVENT MODULE ##########
@@ -169,17 +179,9 @@ def qr_gen(request,key_id):
         
     return redirect('home')
 
+def event_details(request):
+    return render(request,"event_details.html")
 
 def nearby(request):
     return render(request,"nearby.html")
-
-def serach(request):
-    if request.method=='POST':
-        keyword=request.POST.get('search')
-        search_events=Event.filter(event_title=keyword)
-    context={
-        'result':search_events
-
-    }
-    return render(request,'events.html',context)
 

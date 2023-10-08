@@ -5,12 +5,13 @@
 {% block page %}
 <!-- component -->
 <div class="h-screen overflow-y-scroll">
-	<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 lg:gap-8">
-		<div class="post p-5 lg:p-1 rounded-md">
-			<div class="w-3/4 ml-5 mt-5">
+	<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-2 ">
+		<div class="post p-5 lg:p-1 rounded-md mx-auto">
+			<div class=" ml-5 mt-5">
 				
 				<div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-					<form>
+					<form method="POST">
+						{% csrf_token %}
 						<!-- Post Content Section -->
 						<div class="mb-5">
 							<label for="postContent" class="block text-gray-700 text-sm font-bold mb-2">Post Content:</label>
@@ -47,14 +48,15 @@
 		<div class="lg:col-span-2 p-4 w-full mt-3" id="posted">
 			<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 				<!-- First Column -->
+				{% for i in posts %}
 				<div class="bg-white p-8 rounded-lg shadow-md max-w-md">
 					<!-- User Info with Three-Dot Menu -->
 					<div class="flex items-center justify-between mb-4">
 						<div class="flex items-center space-x-2">
 							<img src="https://placekitten.com/40/40" alt="User Avatar" class="w-8 h-8 rounded-full">
 							<div>
-								<p class="text-gray-800 font-semibold">John Doe</p>
-								<p class="text-gray-500 text-sm">Posted 2 hours ago</p>
+								<p class="text-gray-800 font-semibold">{{ i.author }}</p>
+								<p class="text-gray-500 text-sm">{{ i.time }}</p>
 							</div>
 						</div>
 						<div class="text-gray-500 cursor-pointer">
@@ -70,13 +72,13 @@
 					</div>
 					<!-- Message -->
 					<div class="mb-4">
-						<p class="text-gray-800">Just another day with adorable kittens! 🐱 <a href="" class="text-blue-600">#CuteKitten</a>
+						<p class="text-gray-800">{{i.content}} <a href="" class="text-blue-600">#CuteKitten</a>
 							<a href="" class="text-blue-600">#AdventureCat</a>
 						</p>
 					</div>
 					<!-- Image -->
 					<div class="mb-4">
-						<img src="https://placekitten.com/400/300" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+						<img src="{{ i.img.url }}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
 					</div>
 					<!-- Like and Comment Section -->
 					<div class="flex items-center justify-between text-gray-500">
@@ -100,6 +102,7 @@
 						</button>
 					</div>
 				</div>
+				{% endfor %}
 				<!-- Second Column -->
 				<div class="bg-white p-8 shadow-md rounded-lg">
 					<!-- User Info with Three-Dot Menu -->

@@ -6,6 +6,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+<script src="https://www.amcharts.com/lib/4/geodata/india2019High.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    
 </head>
 <body>
 <div class="flex flex-col h-screen bg-gray-100">
@@ -69,6 +74,8 @@
                     <div class="chart-container" style="position: relative; height:150px; width:100%">
                         <!-- El canvas para la gráfica -->
                         <canvas id="usersChart"></canvas>
+    <!-- <div id="chartdiv"></div>  -->
+
                     </div>
                 </div>
 
@@ -188,10 +195,11 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <!-- Script para las gráficas -->
-<script>
+    <script>
     // Gráfica de Usuarios
     var usersChart = new Chart(document.getElementById('usersChart'), {
         type: 'doughnut',
@@ -211,21 +219,39 @@
         }
     });
 
-    // Gráfica de Comercios
+    // Gráfica de Comercios (changed to bar chart)
     var commercesChart = new Chart(document.getElementById('commercesChart'), {
-        type: 'doughnut',
+        type: 'bar',  // Changed to bar chart
         data: {
             labels: ['Nuevos', 'Registrados'],
             datasets: [{
+                label: 'Commerces Data',
                 data: [60, 40],
                 backgroundColor: ['#FEC500', '#8B8B8D'],
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             legend: {
-                position: 'bottom' // Ubicar la leyenda debajo del círculo
+                display: false
+            },
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Category'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Count'
+                    },
+                    beginAtZero: true
+                }
             }
         }
     });
@@ -237,6 +263,201 @@
     menuBtn.addEventListener('click', () => {
         sideNav.classList.toggle('hidden'); // Agrega o quita la clase 'hidden' para mostrar u ocultar la navegación lateral
     });
+</script>
+
+
+<style>
+    #chartdiv {
+    position: relative;
+  width: 100%;
+  height: 500px;
+  background-color: aliceblue;
+}
+</style>
+<script>
+    // Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create map instance
+var chart = am4core.create("chartdiv", am4maps.MapChart);
+
+// Set map definition
+chart.geodata = am4geodata_india2019High;
+
+// Create map polygon series
+var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+
+//Set min/max fill color for each area
+polygonSeries.heatRules.push({
+  property: "fill",
+  target: polygonSeries.mapPolygons.template,
+  min: chart.colors.getIndex(0).brighten(1),  
+  min: chart.colors.getIndex(1).brighten(0.3),
+  // logarithmic: true
+ // "min": am4core.color("#ffd7b1"), 
+});
+
+// Make map load polygon data (state shapes and names) from GeoJSON
+polygonSeries.useGeodata = true;
+
+// Set heatmap values for each state
+polygonSeries.data = [
+  {
+    id: "IN-JK",
+    value: 10
+  },
+  {
+    id: "IN-MH",
+    value: 12
+  },
+  {
+    id: "IN-UP",
+    value: 10
+  },
+  {
+    id: "US-AR",
+    value: 13
+  },
+  {
+    id: "IN-RJ",
+    value: 30
+  },
+  {
+    id: "IN-AP",
+    value: 40
+  },
+  {
+    id: "IN-MP",
+    value: 90
+  },
+  {
+    id: "IN-TN",
+    value: 40
+  },
+  {
+    id: "IN-JH",
+    value: 3
+  },
+  {
+    id: "IN-WB",
+    value: 0
+  },
+  {
+    id: "IN-GJ",
+    value: 0
+  },
+  {
+    id: "IN-BR",
+    value: 0
+  },
+  {
+    id: "IN-TG",
+    value: 0
+  },
+  {
+    id: "IN-GA",
+    value: 0
+  },
+  {
+    id: "IN-DN",
+    value: 0
+  },
+  {
+    id: "IN-DL",
+    value: 0
+  },
+  {
+    id: "IN-DD",
+    value: 0
+  },
+  {
+    id: "IN-CH",
+    value: 0
+  },
+  {
+    id: "IN-CT",
+    value: 0
+  },
+  {
+    id: "IN-AS",
+    value: 0
+  },
+  {
+    id: "IN-AR",
+    value: 0
+  },
+  {
+    id: "IN-AN",
+    value: 0
+  },
+  {
+    id: "IN-KA",
+    value: 0
+  },
+  {
+    id: "IN-KL",
+    value: 0
+  },
+  {
+    id: "IN-OR",
+    value: 0
+  },
+  {
+    id: "IN-SK",
+    value: 0
+  },
+  {
+    id: "IN-HP",
+    value:15
+  },
+  {
+    id: "IN-PB",
+    value: 14
+  },
+  {
+    id: "IN-HR",
+    value: 13
+  },
+  {
+    id: "IN-UT",
+    value: 12
+  },
+  {
+    id: "IN-LK",
+    value: 12
+  },
+  {
+    id: "IN-MN",
+    value: 5
+  },
+  {
+    id: "IN-TR",
+    value: 4
+  },
+  {
+    id: "IN-MZ",
+    value: 3
+  },
+  {
+    id: "IN-NL",
+    value: 2
+  },
+  {
+    id: "IN-ML",
+    value: 1
+  }
+];
+
+// Configure series tooltip
+var polygonTemplate = polygonSeries.mapPolygons.template;
+polygonTemplate.tooltipText = "{name}: {value}";
+polygonTemplate.nonScalingStroke = true;
+polygonTemplate.strokeWidth = 0.5;
+
+// Create hover state and set alternative fill color
+var hs = polygonTemplate.states.create("hover");
+hs.properties.fill = am4core.color("#ff7d01");
 </script>
 </body>
 </html>

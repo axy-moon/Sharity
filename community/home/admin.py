@@ -4,3 +4,5 @@ from .models import *
 
 admin.site.register(Event)
 admin.site.register(Profile)
+admin.site.register(Post)
+

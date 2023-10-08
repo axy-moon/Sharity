@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE, SET_DEFAULT
 import datetime 
-
+from django.utils import timezone
 
 # Create your models here.
 
@@ -26,3 +26,10 @@ class Profile(models.Model):
     location = models.CharField(default="Coimbatore",max_length=25)
     role = models.CharField(default="participant",max_length=20)
 
+class Post(models.Model):
+    author = models.ForeignKey(User,on_delete=CASCADE)
+    content = models.TextField()
+    img = models.ImageField(upload_to='posts',blank=True)
+    time = models.DateTimeField(default=timezone.now)
+    likes = models.IntegerField(default=0,blank=True)
+    comments = models.IntegerField(default=0,blank=True)

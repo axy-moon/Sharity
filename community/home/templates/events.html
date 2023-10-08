@@ -21,33 +21,9 @@
 
 <div class="mt-3 flex-row justify-center align-center w-3/4 mx-auto">
   <h1 class="text-3xl text-left py-3">All Events</h1>
+  {% if boolean %}
+  <p class>Search Results for : <span class="text-primary-500">{{keyword}}</span> </p>
   
-  <!-- <div class="flex flex-wrap justify-between align-center">
-    {% for i in events %}
-    <div class="flex md:flex-row flex-wrap flex-col justify-center align-center">
-      <div>
-        <div class="flex justify-center items-center mx-3 py-3 px-3" id="eventCard" onclick="handleEventClick(dummyEvent)">
-          <div class="flex flex-col justify-between h-[20rem] w-[320px] max-w-sm container px-5 py-2  bg-[#7D7C7C] rounded-xl shadow-lg transform transition duration-100 md:hover:scale-105 md:hover:shadow-2xl">
-            <div>
-              <div class="flex justify-between align-center mb-3">
-                <span class="text-black text-sm font-bold rounded-lg inline-block mt-4 py-1.5 px-4 cursor-pointer" style="background-color: #fff;">Education</span>
-              </div>
-            </div>
-            <div class="flex flex-col pl-4 py-3">
-              <h1 class="text-2xl text-center font-bold text-white cursor-pointer hover:text-primary transition duration-100">{{i.event_title}}</h1>
-              <span class="mt-1 text-center leading-none text-white text-ellipsis">{{i.event_subtitle}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    {% endfor %}
-
-  
-  
-  </div> -->
-
   <div class="flex flex-wrap justify-between align-center">
     {% for i in result %}
     <div class="flex md:flex-row flex-wrap flex-col justify-center align-center">
@@ -69,10 +45,37 @@
     </div>
     
     {% endfor %}
+  </div>
 
+    {% else %}
+  <div class="flex flex-wrap justify-between align-center">
+    {% for i in events %}
+    <div class="flex md:flex-row flex-wrap flex-col justify-center align-center">
+      <div>
+        <div class="flex justify-center items-center mx-3 py-3 px-3" id="eventCard" onclick="handleEventClick(dummyEvent)">
+          <div class="flex flex-col justify-between h-[20rem] w-[320px] max-w-sm container px-5 py-2  bg-[#7D7C7C] rounded-xl shadow-lg transform transition duration-100 md:hover:scale-105 md:hover:shadow-2xl">
+            <div>
+              <div class="flex justify-between align-center mb-3">
+                <span class="text-black text-sm font-bold rounded-lg inline-block mt-4 py-1.5 px-4 cursor-pointer" style="background-color: #fff;">Education</span>
+              </div>
+            </div>
+            <div class="flex flex-col pl-4 py-3">
+              <h1 class="text-2xl text-center font-bold text-white cursor-pointer hover:text-primary transition duration-100">{{i.event_title}}</h1>
+              <span class="mt-1 text-center leading-none text-white text-ellipsis">{{i.event_subtitle}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% endif %}
   
   
   </div>
+
+  
+  
 
   
 

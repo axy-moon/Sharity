@@ -123,7 +123,9 @@ def events(request):
     return render(request,"events.html",e)
 
 def profile(request):
-    return render(request,"profile.html")
+    data = Event.objects.all()
+    temp = {"data" : data}
+    return render(request,"profile.html",temp)
 
 def category(request):
     return render(request,"category.html")

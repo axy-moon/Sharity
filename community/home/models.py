@@ -29,7 +29,12 @@ class Profile(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(User,on_delete=CASCADE)
     content = models.TextField()
-    img = models.ImageField(upload_to='posts',blank=True)
+    img = models.ImageField(upload_to='posts')
     time = models.DateTimeField(default=timezone.now)
     likes = models.IntegerField(default=0,blank=True)
     comments = models.IntegerField(default=0,blank=True)
+
+
+class Particpations(models.Model):
+    participant = models.ForeignKey(User,on_delete=CASCADE)
+    events = models.ForeignKey(Event,on_delete=CASCADE)

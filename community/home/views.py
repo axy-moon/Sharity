@@ -135,10 +135,11 @@ def logout_view(request):
 def feeds(request):
     if request.method == "POST":
         content = request.POST['postContent']
-        post_image = request.POST['fileAttachment']
+        post_image = request.FILES['file']
 
+        print(post_image)
         Post.objects.create(author=request.user,content=content,img=post_image)
-        return redirect('home')
+        return redirect('feeds')
     all_posts = Post.objects.all()
     return render(request,"feeds.html",{ "posts": all_posts })
 

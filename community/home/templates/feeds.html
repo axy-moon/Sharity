@@ -10,7 +10,7 @@
 			<div class=" ml-5 mt-5">
 				
 				<div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-					<form method="POST">
+					<form method="POST" enctype="multipart/form-data">
 						{% csrf_token %}
 						<!-- Post Content Section -->
 						<div class="mb-5">
@@ -22,7 +22,7 @@
 						<div class="mb-5">
 							<label for="fileAttachment" class="block text-gray-700 text-sm font-bold mb-2">Attach File:</label>
 							<div class="relative border-2 rounded-md px-4 py-3 bg-white flex items-center justify-between hover:border-blue-500 transition duration-150 ease-in-out">
-								<input type="file" id="fileAttachment" name="fileAttachment" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+								<input type="file" id="fileAttachment" name="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
 								<div class="flex items-center">
 									<svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -49,7 +49,7 @@
 			<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 				<!-- First Column -->
 				{% for i in posts %}
-				<div class="bg-white p-8 rounded-lg shadow-md max-w-md">
+				<div class="bg-white p-8 rounded-lg shadow-md max-w-lg">
 					<!-- User Info with Three-Dot Menu -->
 					<div class="flex items-center justify-between mb-4">
 						<div class="flex items-center space-x-2">
@@ -83,11 +83,11 @@
 					<!-- Like and Comment Section -->
 					<div class="flex items-center justify-between text-gray-500">
 						<div class="flex items-center space-x-2">
-							<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
+							<button class="flex justify-center items-center gap-1 px-1 hover:bg-gray-50 rounded-full p-1">
 								<svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 									<path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
 								</svg>
-								<span>42 Likes</span>
+								<span class="text-sm">42 Likes</span>
 							</button>
 						</div>
 						<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
@@ -104,14 +104,14 @@
 				</div>
 				{% endfor %}
 				<!-- Second Column -->
-				<div class="bg-white p-8 shadow-md rounded-lg">
+				<div class="bg-white p-8 rounded-lg shadow-md max-w-md">
 					<!-- User Info with Three-Dot Menu -->
 					<div class="flex items-center justify-between mb-4">
 						<div class="flex items-center space-x-2">
-							<img src="https://placekitten.com/40/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+							<img src="{%static 'img/profile.png'%}" alt="User Avatar" class="w-8 h-8 rounded-full">
 							<div>
-								<p class="text-gray-800 font-semibold">John Doe</p>
-								<p class="text-gray-500 text-sm">Posted 2 hours ago</p>
+								<p class="text-gray-800 font-semibold">Shyam</p>
+								<p class="text-gray-500 text-sm">Posted 3 hours ago</p>
 							</div>
 						</div>
 						<div class="text-gray-500 cursor-pointer">
@@ -127,13 +127,13 @@
 					</div>
 					<!-- Message -->
 					<div class="mb-4">
-						<p class="text-gray-800">Just another day with adorable kittens! 🐱 <a href="" class="text-blue-600">#CuteKitten</a>
-							<a href="" class="text-blue-600">#AdventureCat</a>
+						<p class="text-gray-800">Greate day with Gods gift  <a href="" class="text-blue-600">#Service</a>
+							<a href="" class="text-blue-600">#child love</a>
 						</p>
 					</div>
 					<!-- Image -->
 					<div class="mb-4">
-						<img src="https://placekitten.com/450/500" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+						<img src="{%static 'feed/child1.jpg'%}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
 					</div>
 					<!-- Like and Comment Section -->
 					<div class="flex items-center justify-between text-gray-500">
@@ -142,7 +142,7 @@
 								<svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 									<path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
 								</svg>
-								<span>42 Likes</span>
+								<span>44 Likes</span>
 							</button>
 						</div>
 						<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
@@ -153,7 +153,61 @@
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22ZM8 13.25C7.58579 13.25 7.25 13.5858 7.25 14C7.25 14.4142 7.58579 14.75 8 14.75H13.5C13.9142 14.75 14.25 14.4142 14.25 14C14.25 13.5858 13.9142 13.25 13.5 13.25H8ZM7.25 10.5C7.25 10.0858 7.58579 9.75 8 9.75H16C16.4142 9.75 16.75 10.0858 16.75 10.5C16.75 10.9142 16.4142 11.25 16 11.25H8C7.58579 11.25 7.25 10.9142 7.25 10.5Z"></path>
 								</g>
 							</svg>
-							<span>3 Comment</span>
+							<span>5 Comment</span>
+						</button>
+					</div>
+				</div>
+				<!-- Second Column -->
+				<div class="bg-white p-8 shadow-md rounded-lg">
+					<!-- User Info with Three-Dot Menu -->
+					<div class="flex items-center justify-between mb-4">
+						<div class="flex items-center space-x-2">
+							<img src="{%static 'img/profile.png'%}" alt="User Avatar" class="w-8 h-8 rounded-full">
+							<div>
+								<p class="text-gray-800 font-semibold">Dhanush</p>
+								<p class="text-gray-500 text-sm">Posted 1hours ago</p>
+							</div>
+						</div>
+						<div class="text-gray-500 cursor-pointer">
+							<!-- Three-dot menu icon -->
+							<button class="hover:bg-gray-50 rounded-full p-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="7" r="1" />
+									<circle cx="12" cy="12" r="1" />
+									<circle cx="12" cy="17" r="1" />
+								</svg>
+							</button>
+						</div>
+					</div>
+					<!-- Message -->
+					<div class="mb-4">
+						<p class="text-gray-800">May my blood help others <a href="" class="text-blue-600">#Blood Donation</a>
+							<a href="" class="text-blue-600">#Safe Life</a>
+						</p>
+					</div>
+					<!-- Image -->
+					<div class="mb-4">
+						<img src="{%static 'feed/blood2.jpg'%}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+					</div>
+					<!-- Like and Comment Section -->
+					<div class="flex items-center justify-between text-gray-500">
+						<div class="flex items-center space-x-2">
+							<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
+								<svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+									<path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
+								</svg>
+								<span>50 Likes</span>
+							</button>
+						</div>
+						<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
+							<svg width="22px" height="22px" viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+								<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+								<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+								<g id="SVGRepo_iconCarrier">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22ZM8 13.25C7.58579 13.25 7.25 13.5858 7.25 14C7.25 14.4142 7.58579 14.75 8 14.75H13.5C13.9142 14.75 14.25 14.4142 14.25 14C14.25 13.5858 13.9142 13.25 13.5 13.25H8ZM7.25 10.5C7.25 10.0858 7.58579 9.75 8 9.75H16C16.4142 9.75 16.75 10.0858 16.75 10.5C16.75 10.9142 16.4142 11.25 16 11.25H8C7.58579 11.25 7.25 10.9142 7.25 10.5Z"></path>
+								</g>
+							</svg>
+							<span>10 Comment</span>
 						</button>
 					</div>
 				</div>
@@ -163,10 +217,10 @@
 					<!-- User Info with Three-Dot Menu -->
 					<div class="flex items-center justify-between mb-4">
 						<div class="flex items-center space-x-2">
-							<img src="https://placekitten.com/40/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+							<img src="{%static 'img/profile.png'%}" alt="User Avatar" class="w-8 h-8 rounded-full">
 							<div>
-								<p class="text-gray-800 font-semibold">John Doe</p>
-								<p class="text-gray-500 text-sm">Posted 2 hours ago</p>
+								<p class="text-gray-800 font-semibold">Kowshik</p>
+								<p class="text-gray-500 text-sm">Posted 10 hours ago</p>
 							</div>
 						</div>
 						<div class="text-gray-500 cursor-pointer">
@@ -182,13 +236,13 @@
 					</div>
 					<!-- Message -->
 					<div class="mb-4">
-						<p class="text-gray-800">Just another day with adorable kittens! 🐱 <a href="" class="text-blue-600">#CuteKitten</a>
-							<a href="" class="text-blue-600">#AdventureCat</a>
+						<p class="text-gray-800">Happy to help other <a href="" class="text-blue-600">#Help
+							<a href="" class="text-blue-600">#Love</a>
 						</p>
 					</div>
 					<!-- Image -->
 					<div class="mb-4">
-						<img src="https://placekitten.com/400/700" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+						<img src="{%static 'feed/blood1.jpg'%}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
 					</div>
 					<!-- Like and Comment Section -->
 					<div class="flex items-center justify-between text-gray-500">
@@ -217,10 +271,10 @@
 					<!-- User Info with Three-Dot Menu -->
 					<div class="flex items-center justify-between mb-4">
 						<div class="flex items-center space-x-2">
-							<img src="https://placekitten.com/40/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+							<img src="{%static 'img/profile.png'%}" alt="User Avatar" class="w-8 h-8 rounded-full">
 							<div>
-								<p class="text-gray-800 font-semibold">John Doe</p>
-								<p class="text-gray-500 text-sm">Posted 2 hours ago</p>
+								<p class="text-gray-800 font-semibold">Kamali</p>
+								<p class="text-gray-500 text-sm">Posted 11 hours ago</p>
 							</div>
 						</div>
 						<div class="text-gray-500 cursor-pointer">
@@ -236,13 +290,13 @@
 					</div>
 					<!-- Message -->
 					<div class="mb-4">
-						<p class="text-gray-800">Just another day with adorable kittens! 🐱 <a href="" class="text-blue-600">#CuteKitten</a>
-							<a href="" class="text-blue-600">#AdventureCat</a>
+						<p class="text-gray-800">Happy to Serve<a href="" class="text-blue-600">#Child Love</a>
+							<a href="" class="text-blue-600">#pray for well being</a>
 						</p>
 					</div>
 					<!-- Image -->
 					<div class="mb-4">
-						<img src="https://placekitten.com/600/300" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+						<img src="{%static 'feed/child2.jpg'%}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
 					</div>
 					<!-- Like and Comment Section -->
 					<div class="flex items-center justify-between text-gray-500">
@@ -251,7 +305,7 @@
 								<svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 									<path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
 								</svg>
-								<span>42 Likes</span>
+								<span>50 Likes</span>
 							</button>
 						</div>
 						<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
@@ -262,7 +316,7 @@
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22ZM8 13.25C7.58579 13.25 7.25 13.5858 7.25 14C7.25 14.4142 7.58579 14.75 8 14.75H13.5C13.9142 14.75 14.25 14.4142 14.25 14C14.25 13.5858 13.9142 13.25 13.5 13.25H8ZM7.25 10.5C7.25 10.0858 7.58579 9.75 8 9.75H16C16.4142 9.75 16.75 10.0858 16.75 10.5C16.75 10.9142 16.4142 11.25 16 11.25H8C7.58579 11.25 7.25 10.9142 7.25 10.5Z"></path>
 								</g>
 							</svg>
-							<span>3 Comment</span>
+							<span>85 Comment</span>
 						</button>
 					</div>
 				</div>
@@ -271,10 +325,10 @@
 					<!-- User Info with Three-Dot Menu -->
 					<div class="flex items-center justify-between mb-4">
 						<div class="flex items-center space-x-2">
-							<img src="https://placekitten.com/40/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+							<img src="{%static 'img/profile.png'%}" alt="User Avatar" class="w-8 h-8 rounded-full">
 							<div>
-								<p class="text-gray-800 font-semibold">John Doe</p>
-								<p class="text-gray-500 text-sm">Posted 2 hours ago</p>
+								<p class="text-gray-800 font-semibold">Bala</p>
+								<p class="text-gray-500 text-sm">Posted 9 hours ago</p>
 							</div>
 						</div>
 						<div class="text-gray-500 cursor-pointer">
@@ -290,13 +344,13 @@
 					</div>
 					<!-- Message -->
 					<div class="mb-4">
-						<p class="text-gray-800">Just another day with adorable kittens! 🐱 <a href="" class="text-blue-600">#CuteKitten</a>
-							<a href="" class="text-blue-600">#AdventureCat</a>
+						<p class="text-gray-800">Cleaning Street with my follows <a href="" class="text-blue-600">#Clean my Home</a>
+							<a href="" class="text-blue-600">#Clean India</a>
 						</p>
 					</div>
 					<!-- Image -->
 					<div class="mb-4">
-						<img src="{% static 'img/bg.jpg' %}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+						<img src="{%static 'feed/garbage1.jpg'%}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
 					</div>
 					<!-- Like and Comment Section -->
 					<div class="flex items-center justify-between text-gray-500">
@@ -305,7 +359,7 @@
 								<svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 									<path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
 								</svg>
-								<span>42 Likes</span>
+								<span>145 Likes</span>
 							</button>
 						</div>
 						<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
@@ -316,7 +370,7 @@
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22ZM8 13.25C7.58579 13.25 7.25 13.5858 7.25 14C7.25 14.4142 7.58579 14.75 8 14.75H13.5C13.9142 14.75 14.25 14.4142 14.25 14C14.25 13.5858 13.9142 13.25 13.5 13.25H8ZM7.25 10.5C7.25 10.0858 7.58579 9.75 8 9.75H16C16.4142 9.75 16.75 10.0858 16.75 10.5C16.75 10.9142 16.4142 11.25 16 11.25H8C7.58579 11.25 7.25 10.9142 7.25 10.5Z"></path>
 								</g>
 							</svg>
-							<span>3 Comment</span>
+							<span>90 Comment</span>
 						</button>
 					</div>
 				</div>
@@ -325,10 +379,10 @@
 					<!-- User Info with Three-Dot Menu -->
 					<div class="flex items-center justify-between mb-4">
 						<div class="flex items-center space-x-2">
-							<img src="https://placekitten.com/40/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+							<img src="{%static 'img/profile.png'%}" alt="User Avatar" class="w-8 h-8 rounded-full">
 							<div>
-								<p class="text-gray-800 font-semibold">John Doe</p>
-								<p class="text-gray-500 text-sm">Posted 2 hours ago</p>
+								<p class="text-gray-800 font-semibold">Taru</p>
+								<p class="text-gray-500 text-sm">Posted 4 hours ago</p>
 							</div>
 						</div>
 						<div class="text-gray-500 cursor-pointer">
@@ -344,13 +398,13 @@
 					</div>
 					<!-- Message -->
 					<div class="mb-4">
-						<p class="text-gray-800">Just another day with adorable kittens! 🐱 <a href="" class="text-blue-600">#CuteKitten</a>
-							<a href="" class="text-blue-600">#AdventureCat</a>
+						<p class="text-gray-800">Cleaning Street and collecting waste <a href="" class="text-blue-600">#I am Earth</a>
+							<a href="" class="text-blue-600">#Clean India</a>
 						</p>
 					</div>
 					<!-- Image -->
 					<div class="mb-4">
-						<img src="https://placekitten.com/500/300" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+						<img src="{%static 'feed/garbage2.jpg'%}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
 					</div>
 					<!-- Like and Comment Section -->
 					<div class="flex items-center justify-between text-gray-500">
@@ -374,9 +428,115 @@
 						</button>
 					</div>
 				</div>
+				<div class="bg-white p-8 shadow-md rounded-lg">
+					<!-- User Info with Three-Dot Menu -->
+					<div class="flex items-center justify-between mb-4">
+						<div class="flex items-center space-x-2">
+							<img src="{%static 'img/profile.png'%}" alt="User Avatar" class="w-8 h-8 rounded-full">
+							<div>
+								<p class="text-gray-800 font-semibold">Priya</p>
+								<p class="text-gray-500 text-sm">Posted 19 hours ago</p>
+							</div>
+						</div>
+						<div class="text-gray-500 cursor-pointer">
+							<!-- Three-dot menu icon -->
+							<button class="hover:bg-gray-50 rounded-full p-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="7" r="1" />
+									<circle cx="12" cy="12" r="1" />
+									<circle cx="12" cy="17" r="1" />
+								</svg>
+							</button>
+						</div>
+					</div>
+					<!-- Message -->
+					<div class="mb-4">
+						<p class="text-gray-800">Clean Temple<a href="" class="text-blue-600">#Om Nama Shivaya</a>
+							<a href="" class="text-blue-600">#Divine</a>
+						</p>
+					</div>
+					<!-- Image -->
+					<div class="mb-4">
+						<img src="{%static 'feed/temple-cleaning-2.jpg'%}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+					</div>
+					<!-- Like and Comment Section -->
+					<div class="flex items-center justify-between text-gray-500">
+						<div class="flex items-center space-x-2">
+							<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
+								<svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+									<path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
+								</svg>
+								<span>32 Likes</span>
+							</button>
+						</div>
+						<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
+							<svg width="22px" height="22px" viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+								<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+								<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+								<g id="SVGRepo_iconCarrier">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22ZM8 13.25C7.58579 13.25 7.25 13.5858 7.25 14C7.25 14.4142 7.58579 14.75 8 14.75H13.5C13.9142 14.75 14.25 14.4142 14.25 14C14.25 13.5858 13.9142 13.25 13.5 13.25H8ZM7.25 10.5C7.25 10.0858 7.58579 9.75 8 9.75H16C16.4142 9.75 16.75 10.0858 16.75 10.5C16.75 10.9142 16.4142 11.25 16 11.25H8C7.58579 11.25 7.25 10.9142 7.25 10.5Z"></path>
+								</g>
+							</svg>
+							<span>10 Comment</span>
+						</button>
+					</div>
+				</div>
+				<div class="bg-white p-8 shadow-md rounded-lg">
+					<!-- User Info with Three-Dot Menu -->
+					<div class="flex items-center justify-between mb-4">
+						<div class="flex items-center space-x-2">
+							<img src="{%static 'img/profile.png'%}" alt="User Avatar" class="w-8 h-8 rounded-full">
+							<div>
+								<p class="text-gray-800 font-semibold">Latha</p>
+								<p class="text-gray-500 text-sm">Posted 20 hours ago</p>
+							</div>
+						</div>
+						<div class="text-gray-500 cursor-pointer">
+							<!-- Three-dot menu icon -->
+							<button class="hover:bg-gray-50 rounded-full p-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="7" r="1" />
+									<circle cx="12" cy="12" r="1" />
+									<circle cx="12" cy="17" r="1" />
+								</svg>
+							</button>
+						</div>
+					</div>
+					<!-- Message -->
+					<div class="mb-4">
+						<p class="text-gray-800">Serve God <a href="" class="text-blue-600">#Cleaning</a>
+							<a href="" class="text-blue-600">#GiftForGod </a>
+						</p>
+					</div>
+					<!-- Image -->
+					<div class="mb-4">
+						<img src="{%static 'feed/temple-cleaning-1.jpg'%}" alt="Post Image" class="w-full h-48 object-cover rounded-md">
+					</div>
+					<!-- Like and Comment Section -->
+					<div class="flex items-center justify-between text-gray-500">
+						<div class="flex items-center space-x-2">
+							<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
+								<svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+									<path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
+								</svg>
+								<span>42 Likes</span>
+							</button>
+						</div>
+						<button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
+							<svg width="22px" height="22px" viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+								<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+								<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+								<g id="SVGRepo_iconCarrier">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22ZM8 13.25C7.58579 13.25 7.25 13.5858 7.25 14C7.25 14.4142 7.58579 14.75 8 14.75H13.5C13.9142 14.75 14.25 14.4142 14.25 14C14.25 13.5858 13.9142 13.25 13.5 13.25H8ZM7.25 10.5C7.25 10.0858 7.58579 9.75 8 9.75H16C16.4142 9.75 16.75 10.0858 16.75 10.5C16.75 10.9142 16.4142 11.25 16 11.25H8C7.58579 11.25 7.25 10.9142 7.25 10.5Z"></path>
+								</g>
+							</svg>
+							<span>2 Comment</span>
+						</button>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
 </div>
-
 {% endblock %}

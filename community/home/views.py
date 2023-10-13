@@ -136,10 +136,13 @@ def logout_view(request):
 
 def feeds(request):
     if request.method == "POST":
+        tags = []
         content = request.POST['postContent']
         post_image = request.FILES['file']
+        a = Tags.objects.all()
+        for i in range(3):
+            tags.append(a[random.randint(1,90)])
 
-        print(post_image)
         Post.objects.create(author=request.user,content=content,img=post_image)
         return redirect('feeds')
     all_posts = Post.objects.all()

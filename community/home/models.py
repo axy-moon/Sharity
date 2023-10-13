@@ -26,13 +26,18 @@ class Profile(models.Model):
     location = models.CharField(default="Coimbatore",max_length=25)
     role = models.CharField(default="participant",max_length=20)
 
+class Tags(models.Model):
+    tag_per_post = models.CharField(max_length=100)
+
 class Post(models.Model):
     author = models.ForeignKey(User,on_delete=CASCADE)
     content = models.TextField()
     img = models.ImageField(upload_to='posts')
     time = models.DateTimeField(default=timezone.now)
+    tag = models.ManyToManyField(Tags,blank=True)
     likes = models.IntegerField(default=0,blank=True)
     comments = models.IntegerField(default=0,blank=True)
+
 
 
 class Particpations(models.Model):

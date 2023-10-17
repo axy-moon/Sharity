@@ -139,10 +139,7 @@ def feeds(request):
         tags = []
         content = request.POST['postContent']
         post_image = request.FILES['file']
-        a = Tags.objects.all()
-        for i in range(3):
-            tags.append(a[random.randint(1,90)])
-
+        
         Post.objects.create(author=request.user,content=content,img=post_image)
         return redirect('feeds')
     all_posts = Post.objects.all()
@@ -185,8 +182,10 @@ def qr_gen(request,key_id):
         
     return redirect('home')
 
-def event_details(request):
-    return render(request,"event_details.html")
+def event_details(request,key_id):
+    info = Event.objects.get(id=key_id)
+    data = { "event" : info }
+    return render(request,"event_details.html",data)
 
 def nearby(request):
     return render(request,"nearby.html")

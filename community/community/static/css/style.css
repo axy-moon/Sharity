@@ -5,6 +5,8 @@ body {
 
 }
 
+
+
 /* Only the scroll bar */
 ::-webkit-scrollbar {
 display: none;
@@ -21,4 +23,25 @@ input[type='date']::-webkit-calendar-picker-indicator {
     right: 0;
     top: 0;
     width: auto;
+}
+
+.typing-animation::after {
+    content: ".";
+    animation: typing 1s steps(5, end) infinite;
+}
+
+@keyframes typing {
+    from,
+    to {
+        width: 0;
+    }
+    25% {
+        width: 0.5em;
+    }
+    50% {
+        width: 1em;
+    }
+    75% {
+        width: 0.5em;
+    }
 }

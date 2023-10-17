@@ -18,11 +18,25 @@
           <form method="POST">
             {% csrf_token %}
           <div class="divide-y divide-gray-200">
-            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+            <div class="py-8 text-base leading-6 space-y-2 text-gray-700 sm:text-lg sm:leading-7">
               <div class="flex flex-col">
                 <label class="leading-loose">Event Title</label>
                 <input type="text" name="event-title" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title">
               </div>
+              <div class="flex flex-col">
+                <label class="leading-loose">Category</label>
+                <select type="text" name="category" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-500">
+                <option>Education</option>
+                <option>Child Welfare</option>
+                <option>Health Care</option>
+                <option>Financial</option>
+                <option>Rural Development</option>
+                <option>Justice and Corrections</option>
+                <option>Other</option>
+
+
+                </select>
+                </div>
               <div class="flex flex-col">
                 <label class="leading-loose">Event Subtitle</label>
                 <input type="text" name="event-subtitle" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">

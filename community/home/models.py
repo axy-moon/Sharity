@@ -14,6 +14,8 @@ class Event(models.Model):
     date = models.DateTimeField(blank=True)
     time = models.TimeField(default=datetime.time(10, 00, 00))
     description = models.TextField(blank=True)
+    category = models.CharField(max_length=25,default="Other")
+
 
     def __str__(self):
         return self.event_title

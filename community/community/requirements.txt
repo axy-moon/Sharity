@@ -1,0 +1,6 @@
+PyPDF2
+langchain
+faiss-cpu
+openai
+beautifulsoup4
+tiktoken

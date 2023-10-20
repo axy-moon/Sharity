@@ -68,6 +68,7 @@ def register(request):
         return render(request,"register.html")
 
 def login_view(request):
+    invalid = False
     if(request.method == "POST"):
         username = request.POST['username']
         password = request.POST['password']
@@ -81,7 +82,8 @@ def login_view(request):
                 auth.login(request,user)
                 return redirect('details')
         else:
-            return HttpResponse("Invalid User")
+            invalid = True
+            return render(request,"login.html",locals())
     return render(request,"login.html")
 
 def verify(request):
@@ -189,9 +191,8 @@ def qr_gen(request,key_id):
         email = EmailMessage(subject, message, from_email, recipient)
         email.attach_file(img_path)
         email.send()
-        return HttpResponse('Event Registered Successfully')
+    return render(request,"home.html",{"toast":True})
         
-    return redirect('home')
 
 def event_details(request,key_id):
     info = Event.objects.get(id=key_id)
@@ -229,7 +230,7 @@ def chatbot(request):
     print("chat called")
     if request.method == "POST":
         question=request.POST['text']
-        os.environ["OPENAI_API_KEY"]="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"
+        os.environ["OPENAI_API_KEY"]="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"
         text_splitter=CharacterTextSplitter(
         separator="\n",
         chunk_size=10000,

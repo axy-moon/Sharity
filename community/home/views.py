@@ -17,6 +17,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import ElasticVectorSearch,Pinecone,Weaviate,FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
+from community import config
 
 # Create your views here.
 
@@ -230,7 +231,7 @@ def chatbot(request):
     print("chat called")
     if request.method == "POST":
         question=request.POST['text']
-        os.environ["OPENAI_API_KEY"]="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"
+        os.environ["OPENAI_API_KEY"]= config.openAi_key
         text_splitter=CharacterTextSplitter(
         separator="\n",
         chunk_size=10000,

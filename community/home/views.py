@@ -201,7 +201,9 @@ def event_details(request,key_id):
     return render(request,"event_details.html",data)
 
 def nearby(request):
-    return render(request,"nearby.html")
+    a = Event.objects.filter(location="Coimbatore")
+    print("Location ",a)
+    return render(request,"nearby.html",{"nearby":a})
 
 
 def success():

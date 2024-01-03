@@ -9,7 +9,7 @@ Landing Page
 ![image](https://github.com/axy-moon/Sharity/assets/90022361/cd742604-6434-4d91-9a3e-881574d106fa)
 
 Login Page
-![image](https://github.com/axy-moon/Sharity/assets/90022361/d603f794-38e4-4f20-861d-123b380465ac)
+![image](https://github.com/axy-moon/Sharity/assets/90022361/438ac6a2-46e3-4040-b2a3-3e6ee26e06e5)
 
 Home Page
 ![image](https://github.com/axy-moon/Sharity/assets/90022361/9bf308a3-ce38-494d-adb7-e98a1747efd1)

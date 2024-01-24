@@ -13,3 +13,6 @@ Login Page
 
 Home Page
 ![image](https://github.com/axy-moon/Sharity/assets/90022361/9bf308a3-ce38-494d-adb7-e98a1747efd1)
+
+Feeds Page
+![image](https://github.com/axy-moon/Sharity/assets/90022361/d0e12684-47bc-44c6-9816-90c8be850a13)

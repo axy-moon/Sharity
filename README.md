@@ -16,3 +16,12 @@ Home Page
 
 Feeds Page
 ![image](https://github.com/axy-moon/Sharity/assets/90022361/d0e12684-47bc-44c6-9816-90c8be850a13)
+
+Event Creation Form
+![image](https://github.com/axy-moon/Sharity/assets/90022361/66fdf234-14a8-41b9-8fc7-045704dec670)
+
+ChatBot Screen
+![image](https://github.com/axy-moon/Sharity/assets/90022361/daabea6a-dc8f-46ee-8d28-45cb16ba2445)
+
+Nearby Events 
+![image](https://github.com/axy-moon/Sharity/assets/90022361/d4912d36-132f-40fe-ba16-38970720d795)

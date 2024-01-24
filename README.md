@@ -23,5 +23,5 @@ Event Creation Form
 ChatBot Screen
 ![image](https://github.com/axy-moon/Sharity/assets/90022361/daabea6a-dc8f-46ee-8d28-45cb16ba2445)
 
-Nearby Events 
-![image](https://github.com/axy-moon/Sharity/assets/90022361/d4912d36-132f-40fe-ba16-38970720d795)
+Nearby Events
+![image](https://github.com/axy-moon/Sharity/assets/90022361/af9fdf25-603c-4faf-b70a-5d741489ce2f)
